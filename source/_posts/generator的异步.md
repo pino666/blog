@@ -5,7 +5,7 @@ tags:
     -JavaScript
     -ES6
     -generator
-# cover: /assets/twelfth.jpg
+cover: /assets/twelfth.jpg
 ---
 {% blockquote %}
 本文参考于ECMAScript 6 入门--阮一峰 http://es6.ruanyifeng.com/#docs/class
