@@ -7,7 +7,7 @@ tags:
 本文参考于题目出自leetcode官方，有些答案参考于网络
 {% endblockquote %}
 
-## 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+## 1.给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
 
 ### 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
 <table><tr><td bgcolor=#D1EEEE>   🌰：给定 nums = [2, 7, 11, 15], target = 9
@@ -43,7 +43,7 @@ var twoSum = function(nums, target) {
 };
 ```
 
-## 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
+## 2.给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
 ### 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
 输出：7 -> 0 -> 8
@@ -94,7 +94,7 @@ var addTwoNumbers = function(l1, l2) {
 };
 ```
 
-## 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+## 3.给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: "pwwkew"
 输出: 3
 解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
@@ -124,7 +124,7 @@ var lengthOfLongestSubstring = function(s) {
 };
 ```
 
-## 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+## 4.给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
 ### 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−2的31次方,  2的31次方 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: -123
 输出: -321
@@ -148,7 +148,7 @@ var reverse = function(x) {
     return result;
 };
 ```
-## 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
+## 5.请你来实现一个 atoi 函数，使其能将字符串转换成整数。
 首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
 当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。
 该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。
@@ -192,7 +192,7 @@ var myAtoi = function(str) {
     return result;
 };
 ```
-## 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+## 6.判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: 10
 输出: false
 解释: 从右向左读, 为 01 。因此它不是一个回文数。
@@ -229,7 +229,7 @@ var isPalindrome = function(x) {
     return false;
 };
 ```
-## 罗马数字转整数
+## 7.罗马数字转整数
 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 字符          数值
 I             1
@@ -289,7 +289,7 @@ var romanToInt = function(s) {
     
 };
 ```
-## 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
+## 8.编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: ["flower","flow","flight"]
 输出: "fl"。
 所有输入只包含小写字母 a-z 。
@@ -313,5 +313,299 @@ var longestCommonPrefix = function(strs) {
         result = result.slice(0, j);
     }
     return  result;
+};
+```
+## 9.给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+有效字符串需满足：
+左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+注意空字符串可被认为是有效字符串。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: "()"
+输出: true
+输入: "()"
+输出: true
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    if(s === '') return true;
+    let arr = [];
+    const mapp = { '(' :')', '[':']', '{':'}'};
+    for(let i of s){
+        if(mapp.hasOwnProperty(i)){
+            arr.push(i)
+        }else{
+            let left = arr.pop()
+            if(mapp[left] !== i) {
+                return false 
+            } 
+        }
+    }
+    if(arr.length) return false;
+    return true;
+};
+```
+## 10.将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的.
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+</td></tr></table>
+```
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+  if(l1 === null) return l2;
+  if(l2 === null) return l1;
+
+  if(l1.val < l2.val){
+      l1.next = mergeTwoLists(l1.next,l2)
+      return l1
+  }
+    l2.next = mergeTwoLists(l1,l2.next)
+    return l2
+};
+```
+## 11.给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+(不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。)
+<table><tr><td bgcolor=#D1EEEE>   🌰：给定 nums = [0,0,1,1,1,2,2,3,3,4],
+函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
+你不需要考虑数组中超出新长度后面的元素.
+给定数组 nums = [1,1,2], 
+函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
+你不需要考虑数组中超出新长度后面的元素。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    if(nums.length === 0) return 0;
+    for(let j=0; j<nums.length;){
+        if(nums[j] === nums[j+1]){
+            nums.splice(j,1);
+        }else{
+            j++;
+        }
+    }
+    return nums.length
+};
+||
+var removeDuplicates = function(nums) {
+    if(nums.length === 0) return 0;
+    let length = 1;
+    for(let j=1; j<nums.length;j++){
+        if(nums[j] !== nums[j-1]){
+            nums[length++] = nums[j]
+        }
+    }
+    return length
+};
+```
+## 12.给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+<table><tr><td bgcolor=#D1EEEE>   🌰：给定 nums = [3,2,2,3], val = 3,
+函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
+你不需要考虑数组中超出新长度后面的元素
+🌰：给定 nums = [0,1,2,2,3,0,4,2], val = 2,
+函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。
+注意这五个元素可为任意顺序。
+你不需要考虑数组中超出新长度后面的元素。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    let i = 0;
+    let len = nums.length;
+    while(i < len){
+        if(nums[i] == val){
+            nums[i] = nums[len-1]
+            len--;
+        }else{
+            i++;
+        }
+    }
+    return len
+};
+||
+var removeElement = function(nums, val) {
+    for(let i = 0;i < nums.length;){
+        if(nums[i] == val){
+            nums.splice(i,1)
+        }else{
+            i++
+        }
+       
+    }
+    return nums.length
+};
+```
+## 13. 实现 strStr() 函数
+给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: haystack = "hello", needle = "ll"
+输出: 2
+🌰：输入: haystack = "aaaaa", needle = "bba"
+输出: -1
+当 needle 是空字符串时我们应当返回 0 。
+</td></tr></table>
+```
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    if(needle === '') return 0;
+    return haystack.indexOf(needle)
+};
+||
+var strStr = function(haystack, needle) {
+    if(needle === '') return 0;
+    for(let i=0;i<haystack.length;i++){
+        if(haystack[i] === needle[0]){
+            if(haystack.substr(i,needle.length) === needle) return i
+        }
+    }
+    return -1
+};
+```
+## 14. 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+你可以假设数组中无重复元素。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: [1,3,5,6], 5
+输出: 2
+🌰：输入: [1,3,5,6], 0
+输出: 0
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+     let ret = 0;
+    if(nums[0] > target) return 0;
+    for(let i=0;i<nums.length;i++){
+        if(nums[i] >= target) return i
+    }
+    return nums.length;
+};
+||(二分法)
+var searchInsert = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    if(nums[0] > target) return 0;
+    if(nums[nums.length-1] < target) return nums.length;
+    while(left <= right){
+        let mid = Math.floor(left + (right - left) / 2);
+        if(nums[mid] < target){
+            left = mid+1;
+        }
+        else if(nums[mid] > target){
+            right = mid - 1;
+        }else if(nums[mid] === target){
+            return mid;
+        }
+    }
+    return left;
+};
+```
+## 15. 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: [-2,1,-3,4,-1,2,1,-5,4],
+输出: 6
+解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+    if(nums.length === 0 )return 0;
+    let sum = 0;
+    let ret = nums[0];
+    for(let i = 0;i<nums.length;i++){
+        if(sum > 0){
+            sum = sum + nums[i];
+        }else{
+            sum=nums[i];
+        }
+        ret = Math.max(ret,sum);
+    }
+    return ret;
+};
+```
+## 16. 给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。如果不存在最后一个单词，请返回 0 。
+说明：一个单词是指由字母组成，但不包含任何空格的字符串。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: "Hello World"
+输出: 5
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function(s) {
+    if(s === '')return 0;
+    let num = 0;
+    let rst = 0;
+    for(const str of s){
+        if(str === ' '){
+            rst = num === 0 ? rst : num 
+            num = 0
+        }else{
+            num +=1;
+        }
+    } 
+    if(!num){
+        return rst
+    } 
+    return num
+}
+```
+## 17. 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
+最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。
+你可以假设除了整数 0 之外，这个整数不会以零开头。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: [1,2,3]
+输出: [1,2,4]
+解释: 输入数组表示数字 123
+🌰：输入: [4,3,2,1]
+输出: [4,3,2,2]
+解释: 输入数组表示数字 4321
+</td></tr></table>
+```
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+    let rst = 0;
+    for(let i = digits.length -1 ; i >= 0; i--){
+        digits[i] += 1
+        if(digits[i] % 10 !== 0){
+            return digits
+        }
+        digits[i] = digits[i] % 10
+        if(i === 0){
+            return [1, ...digits]
+        }
+    }
 };
 ```
