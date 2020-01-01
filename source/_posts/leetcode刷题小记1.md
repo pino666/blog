@@ -609,3 +609,328 @@ var plusOne = function(digits) {
     }
 };
 ```
+## 18. 实现 int sqrt(int x) 函数。
+计算并返回 x 的平方根，其中 x 是非负整数。
+由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: 4
+输出: 2
+🌰：输入: 8
+输出: 2
+说明: 8 的平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去
+</td></tr></table>
+```
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+    return Math.floor(Math.sqrt(x))
+};
+||(粗暴法，用时与内存都极不理想)
+var mySqrt = function(x) {
+    for(let i = 0; i <= x; i++){
+        if(i * i <= x && (i+1) * (i+1) > x){
+            return i
+        }
+    }
+};
+```
+## 19.爬楼梯
+假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+注意：给定 n 是一个正整数。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入： 2
+输出： 2
+解释： 有两种方法可以爬到楼顶。
+1.  1 阶 + 1 阶
+2.  2 阶
+🌰：输入： 3
+输出： 3
+解释： 有三种方法可以爬到楼顶。
+1.  1 阶 + 1 阶 + 1 阶
+2.  1 阶 + 2 阶
+3.  2 阶 + 1 阶
+</td></tr></table>
+```
+斐波那契数列（可用公式直接求出）
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+    let arr = [0,1,2]
+    for(let i=3;i<=n;i++){
+        arr[i] = arr[i-1] + arr[i-2]
+    }
+    return arr[n]
+};
+```
+## 20. 删除排序链表中的重复元素
+给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入: 1->1->2
+输出: 1->2
+🌰：输入: 1->1->2->3->3
+输出: 1->2->3
+</td></tr></table>
+```
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function(head) {
+    let result = head
+    while(result && result.next){
+        if(result.val === result.next.val){
+            result.next = result.next.next
+        } else{
+             result = result.next  
+        }    
+    }
+    return head
+};
+```
+## 21. 判断相同的树
+给定两个二叉树，编写一个函数来检验它们是否相同。
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+<table><tr><td bgcolor=#D1EEEE>   🌰：输入:       
+           1         1
+          / \       / \
+         2   3     2   3
+        [1,2,3],   [1,2,3]
+
+输出: true
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function(p, q) {
+    if(!p && !q){
+        return true;
+    }else if(!p || !q ){
+        return false;
+    }else if(p.val !== q.val){
+        return false;
+    }
+    return isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
+};
+```
+## 22.  判断对称二叉树
+给定一个二叉树，检查它是否是镜像对称的。
+<table><tr><td bgcolor=#D1EEEE>   🌰：例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+```
+             1
+            / \
+           2   2
+          / \ / \
+         3  4 4  3
+```
+但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+```
+            1
+           / \
+          2   2
+           \   \
+            3   3
+```
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function(root) {
+    if(!root) return true;
+    return checkTree(root.left,root.right)
+};
+const checkTree = function(left,right) {
+    if(!left && !right) return true;
+    if(!left || !right) return false;
+    if(left.val === right.val){
+        return checkTree(left.left,right.right) && checkTree(left.right,right.left)
+    }
+    return false
+};
+```
+## 23.二叉树的最大深度
+给定一个二叉树，找出其最大深度。
+二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+说明: 叶子节点是指没有子节点的节点。
+<table><tr><td bgcolor=#D1EEEE>   🌰：给定二叉树 [3,9,20,null,null,15,7]，
+```
+         3
+        / \
+        9  20
+          /  \
+        15   7
+```
+返回它的最大深度 3 。
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    if(!root) return 0;
+    let num = Math.max( maxDepth(root.left), maxDepth(root.right) ) + 1;
+    return num;
+};
+```
+## 24. 二叉树的层次遍历 II
+给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+<table><tr><td bgcolor=#D1EEEE>   🌰：例如：给定二叉树 [3,9,20,null,null,15,7],
+```
+         3
+        / \
+        9  20
+          /  \
+        15   7
+```
+返回其自底向上的层次遍历为：
+```
+      [
+        [15,7],
+        [9,20],
+        [3]
+      ]
+```
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrderBottom = function(root) {
+    if(!root) return [];
+    let arr = [];
+    const checkTree = function(root, index){
+        if(!root) return;
+        arr[index] = arr[index] || [];
+        arr[index].push(root.val)
+        checkTree(root.left, index+1);
+        checkTree(root.right, index+1);
+    }
+    checkTree(root, 0);
+    return arr.reverse();
+    
+};
+```
+## 25. 平衡二叉树
+给定一个二叉树，判断它是否是高度平衡的二叉树。
+<table><tr><td bgcolor=#D1EEEE> 本题中，一棵高度平衡二叉树定义为：
+一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。
+🌰：给定二叉树 [3,9,20,null,null,15,7]
+```
+        3
+       / \
+      9  20
+        /  \
+       15   7
+```
+返回 true 。
+给定二叉树 [1,2,2,3,3,null,null,4,4]
+```
+         1
+        / \
+       2   2
+          / \
+         3   3
+        / \
+       4   4
+```
+返回 false 。
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+const balanceTree = (node) => {
+    if (!node) return 0
+    return Math.max(balanceTree(node.left), balanceTree(node.right)) + 1;
+}
+var isBalanced = function(root) {
+    if(!root) return true;
+    if(Math.abs(balanceTree(root.left) - balanceTree(root.right)) > 1) return false;
+    if(isBalanced(root.left) && isBalanced(root.right)) return true;
+    return false;
+};
+```
+## 26. 二叉树的最小深度
+给定一个二叉树，找出其最小深度。
+最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+<table><tr><td bgcolor=#D1EEEE> 说明: 叶子节点是指没有子节点的节点。
+🌰：给定二叉树 [3,9,20,null,null,15,7],
+```
+        3
+       / \
+      9  20
+        /  \
+       15   7
+```
+返回它的最小深度  2.
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var minDepth = function(root) {
+    if(!root) return 0;
+    if(!root.left || !root.right) return Math.max(minDepth(root.left),minDepth(root.right))+1;
+    return Math.min(minDepth(root.left),minDepth(root.right))+1;
+   
+};
+```
