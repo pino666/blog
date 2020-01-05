@@ -4,13 +4,13 @@ date: 2019-11-27 18:10:26
 tags:
 ---
 {% blockquote %}
-本文参考于题目出自leetcode官方，有些答案参考于网络
+本文参考于题目出自leetcode官方，有些答案参考于网络，仅供学习使用～
 {% endblockquote %}
 
-## 1.给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
-
-### 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
-<table><tr><td bgcolor=#D1EEEE>   🌰：给定 nums = [2, 7, 11, 15], target = 9
+## 1. 两数之和
+给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+<table><tr><td bgcolor=#D1EEEE> 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素
+ 🌰：给定 nums = [2, 7, 11, 15], target = 9
 因为 nums[0] + nums[1] = 2 + 7 = 9
 所以返回 [0, 1]
 </td></tr></table>
@@ -43,9 +43,10 @@ var twoSum = function(nums, target) {
 };
 ```
 
-## 2.给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
-### 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-<table><tr><td bgcolor=#D1EEEE>   🌰：输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+## 2. 两数相加（中等）
+给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
+<table><tr><td bgcolor=#D1EEEE> 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+🌰：输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
 输出：7 -> 0 -> 8
 原因：342 + 465 = 807
 </td></tr></table>
@@ -94,7 +95,8 @@ var addTwoNumbers = function(l1, l2) {
 };
 ```
 
-## 3.给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+## 3. 无重复字符的最长子串（中等）
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: "pwwkew"
 输出: 3
 解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
@@ -124,9 +126,10 @@ var lengthOfLongestSubstring = function(s) {
 };
 ```
 
-## 4.给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
-### 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−2的31次方,  2的31次方 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
-<table><tr><td bgcolor=#D1EEEE>   🌰：输入: -123
+## 4. 整数反转 
+给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+<table><tr><td bgcolor=#D1EEEE> 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−2的31次方,  2的31次方 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+🌰：输入: -123
 输出: -321
 </td></tr></table>
 ```
@@ -154,8 +157,8 @@ var reverse = function(x) {
 该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。
 注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。
 在任何情况下，若函数不能进行有效的转换时，请返回 0。
-### 假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−2的31次方,  2的31次方 − 1]。如果数值超过这个范围，请返回  INT_MAX (2的31次方 − 1) 或 INT_MIN (−2的31次方) 。
-<table><tr><td bgcolor=#D1EEEE>   🌰：输入: "   -42"
+<table><tr><td bgcolor=#D1EEEE> 假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−2的31次方,  2的31次方 − 1]。如果数值超过这个范围，请返回  INT_MAX (2的31次方 − 1) 或 INT_MIN (−2的31次方) 。
+🌰：输入: "   -42"
 输出: -42
 解释: 第一个非空白字符为 '-', 它是一个负号。
      我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。
@@ -192,7 +195,8 @@ var myAtoi = function(str) {
     return result;
 };
 ```
-## 6.判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+## 6. 判断一个整数是否是回文数。
+回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: 10
 输出: false
 解释: 从右向左读, 为 01 。因此它不是一个回文数。
@@ -229,7 +233,7 @@ var isPalindrome = function(x) {
     return false;
 };
 ```
-## 7.罗马数字转整数
+## 7. 罗马数字转整数
 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 字符          数值
 I             1
@@ -240,9 +244,7 @@ C             100
 D             500
 M             1000
 例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。
-
 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：
-
 I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
 X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 
 C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
@@ -289,7 +291,8 @@ var romanToInt = function(s) {
     
 };
 ```
-## 8.编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
+## 8. 最长公共前缀
+编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: ["flower","flow","flight"]
 输出: "fl"。
 所有输入只包含小写字母 a-z 。
@@ -315,7 +318,8 @@ var longestCommonPrefix = function(strs) {
     return  result;
 };
 ```
-## 9.给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+## 9. 有效的括号
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
 有效字符串需满足：
 左括号必须用相同类型的右括号闭合。
 左括号必须以正确的顺序闭合。
@@ -348,7 +352,8 @@ var isValid = function(s) {
     return true;
 };
 ```
-## 10.将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的.
+## 10. 合并两个有序链表
+将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的.
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入：1->2->4, 1->3->4
 输出：1->1->2->3->4->4
 </td></tr></table>
@@ -377,7 +382,8 @@ var mergeTwoLists = function(l1, l2) {
     return l2
 };
 ```
-## 11.给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+## 11. 删除排序数组中的重复项
+给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
 (不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。)
 <table><tr><td bgcolor=#D1EEEE>   🌰：给定 nums = [0,0,1,1,1,2,2,3,3,4],
 函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
@@ -414,7 +420,8 @@ var removeDuplicates = function(nums) {
     return length
 };
 ```
-## 12.给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+## 12.移除元素 
+给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 <table><tr><td bgcolor=#D1EEEE>   🌰：给定 nums = [3,2,2,3], val = 3,
@@ -486,7 +493,8 @@ var strStr = function(haystack, needle) {
     return -1
 };
 ```
-## 14. 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+## 14. 搜索插入位置
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
 你可以假设数组中无重复元素。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: [1,3,5,6], 5
 输出: 2
@@ -527,7 +535,8 @@ var searchInsert = function(nums, target) {
     return left;
 };
 ```
-## 15. 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+## 15. 最大子序和
+给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: [-2,1,-3,4,-1,2,1,-5,4],
 输出: 6
 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
@@ -552,7 +561,8 @@ var maxSubArray = function(nums) {
     return ret;
 };
 ```
-## 16. 给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。如果不存在最后一个单词，请返回 0 。
+## 16. 最后一个单词的长度
+给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。如果不存在最后一个单词，请返回 0 。
 说明：一个单词是指由字母组成，但不包含任何空格的字符串。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: "Hello World"
 输出: 5
@@ -580,7 +590,8 @@ var lengthOfLastWord = function(s) {
     return num
 }
 ```
-## 17. 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
+## 17. 加一
+给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
 最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。
 你可以假设除了整数 0 之外，这个整数不会以零开头。
 <table><tr><td bgcolor=#D1EEEE>   🌰：输入: [1,2,3]
@@ -933,4 +944,336 @@ var minDepth = function(root) {
     return Math.min(minDepth(root.left),minDepth(root.right))+1;
    
 };
+```
+## 27. 求路径总和
+给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+说明: 叶子节点是指没有子节点的节点。
+<table><tr><td bgcolor=#D1EEEE> 说明: 叶子节点是指没有子节点的节点。
+🌰：给定如下二叉树，以及目标和 sum = 22，
+```
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \      \
+        7    2      1
+```
+返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5->4->11->2。
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {boolean}
+ */
+var hasPathSum = function(root, sum) {
+    if(!root) return false;
+    if(!root.left && !root.right) return root.val === sum;
+    return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+};
+```
+## 28. 杨辉三角
+给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
+在杨辉三角中，每个数是它左上方和右上方的数的和。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 5
+```
+输出:
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+```
+</td></tr></table>
+```
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function(numRows) {
+    let arr = [];
+    for(let i=0; i<= rowIndex; i++){
+        let res = [];
+        for(let j=0;j<=i;j++){
+            if(j=== 0 || j===i){
+                res.push(1);
+                continue;
+            }
+            res.push(arr[i-1][j-1] + arr[i-1][j]);
+        }
+        arr.push(res);
+    }
+    return arr;
+};
+```
+## 29. 杨辉三角 II
+给定一个非负索引 k，其中 k ≤ 33，返回杨辉三角的第 k 行。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 3
+输出: [1,3,3,1]
+</td></tr></table>
+```
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function(rowIndex) {
+    let arr = [];
+    for(let i=0; i<= rowIndex; i++){
+        let res = [];
+        for(let j=0;j<=i;j++){
+            if(j=== 0 || j===i){
+                res.push(1);
+                continue;
+            }
+            res.push(arr[i-1][j-1] + arr[i-1][j])
+        }
+        arr.push(res)
+    }
+    return arr[rowIndex]
+};
+```
+## 30. 买卖股票的最佳时机
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
+<table><tr><td bgcolor=#D1EEEE>注意你不能在买入股票前卖出股票。
+🌰：输入: [7,1,5,3,6,4]
+输出: 5
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+🌰：输入: [7,6,4,3,1]
+输出: 0
+解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+</td></tr></table>
+```
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    if(!prices.length) return 0;
+    let p = q = prices[0];
+    let res = 0;
+    for(let i = 1;i< prices.length; i++){
+        if(prices[i] < p) {
+            p = q = prices[i];
+            continue;
+        }
+        if(prices[i] > q){
+            q = prices[i];
+            res = q - p > res ? q - p : res;
+        }
+    }
+    return res;
+};
+```
+## 31.买卖股票的最佳时机 II
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
+<table><tr><td bgcolor=#D1EEEE>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+🌰：输入: [7,1,5,3,6,4]
+输出: 7
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。
+     随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。
+🌰：输入: [1,2,3,4,5]
+输出: 4
+解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。
+     注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。
+     因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。
+</td></tr></table>
+```
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    if(!prices.length) return 0;
+    let p = q = prices[0];
+    let res = 0;
+    for(let i = 1;i< prices.length; i++){
+        if(prices[i] < p) {
+            p = q = prices[i];
+            continue;
+        }
+        if(prices[i] > q){
+            if(i === prices.length-1)  return res+prices[i]-p;
+            if(prices[i+1] < prices[i]){
+                res = res + prices[i] - p;
+                q = p = prices[i];
+            }            
+        }
+    }
+    return res;
+};
+```
+## 32. 验证回文串
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+<table><tr><td bgcolor=#D1EEEE>说明：本题中，我们将空字符串定义为有效的回文串。
+🌰：输入: "A man, a plan, a canal: Panama"
+输出: true
+🌰：输入: "race a car"
+输出: false。
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+    let str = s.replace(/[^0-9a-zA-Z]/g,'').toLowerCase();
+    let i=0;
+    let j= str.length-1;
+    let middle = Math.ceil(str.length / 2);
+    while(i < middle && j > middle-1) {
+        if(str[i] !== str[j]) return false;
+        i++;
+        j--;
+    }
+    return true;
+};
+```
+## 33. 只出现一次的数字
+给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+<table><tr><td bgcolor=#D1EEEE>说明：你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
+🌰：输入: [2,2,1]
+输出: 1
+🌰：输入: [4,1,2,1,2]
+输出: 4
+</td></tr></table>
+```
+解题思路：使用异或（a 异或 0 = a，a 异或 b 异或 a = b，a 异或 a = 0）
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums) {
+    let res = 0;
+    for(num of nums) {
+        res ^= num
+    }
+
+    return res;
+};
+```
+## 34. 环形链表
+给定一个链表，判断链表中是否有环。
+为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入：head = [3,2,0,-4], pos = 1
+输出：true
+解释：链表中有一个环，其尾部连接到第二个节点。
+🌰：输入：head = [1,2], pos = 0
+输出：true
+解释：链表中有一个环，其尾部连接到第一个节点。
+</td></tr></table>
+```
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    if(!head || !head.next) return false;
+    while(head){
+        if(head.val === 'have') return true;
+        head.val = 'have';
+        head = head.next;
+    }
+    return false;
+};
+||
+var hasCycle = function(head) {
+    if(!head || !head.next) return false;
+    let slow = head;
+    let fast = head.next;
+    while(slow !== fast){
+        if(!fast || !fast.next) return false;
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return true;
+};
+```
+## 35. 最小栈
+设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。
+·push(x) -- 将元素 x 推入栈中。
+·pop() -- 删除栈顶的元素。
+·top() -- 获取栈顶元素。
+·getMin() -- 检索栈中的最小元素。
+<table><tr><td bgcolor=#D1EEEE>🌰：MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.getMin();   --> 返回 -2.
+</td></tr></table>
+```
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    this.arr = [];
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function(x) {
+    this.arr[this.arr.length] = x;
+    return this.arr;
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    let num = this.arr[this.arr.length-1];
+    this.arr.length = this.arr.length-1;
+    return num;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.arr[this.arr.length-1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    let res = this.arr[0];
+    for(let num of this.arr){
+        res = res < num ? res : num;
+    }
+    return res;
+};
+
+/** 
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
 ```
