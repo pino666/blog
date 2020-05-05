@@ -1076,7 +1076,7 @@ var maxProfit = function(prices) {
     return res;
 };
 ```
-## 31.买卖股票的最佳时机 II
+## 31. 买卖股票的最佳时机 II
 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
 设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
 <table><tr><td bgcolor=#D1EEEE>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
@@ -1276,4 +1276,253 @@ MinStack.prototype.getMin = function() {
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
+```
+## 36.  两数之和 II - 输入有序数组
+给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
+函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+说明:
+返回的下标值（index1 和 index2）不是从零开始的。
+你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: numbers = [2, 7, 11, 15], target = 9
+输出: [1,2]
+解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+</td></tr></table>
+```
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(numbers, target) {
+    for(let i = 0; i<numbers.length; i++){
+        for(let j = i+1; j < numbers.length; j++){
+            if(numbers[i] + numbers[j] === target) return [i+1, j+1];
+        }
+    }
+};
+||
+var twoSum = function(numbers, target) {
+    let small = 0; 
+    let big = numbers.length;
+    while(small < big){
+        if(numbers[small] + numbers[big] === target) return [small+1, big+1];
+        if(numbers[small] + numbers[big] < target) { 
+            small++;
+        }else{
+            big--;
+        }
+    }
+};
+```
+## 37. Excel表列名称
+给定一个正整数，返回它在 Excel 表中相对应的列名称。
+例如，
+
+    1 -> A
+    2 -> B
+    3 -> C
+    ...
+    26 -> Z
+    27 -> AA
+    28 -> AB 
+    ...
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 1
+输出: "A"
+🌰：输入: 28
+输出: "AB"
+🌰：输入: 701
+输出: "ZY"
+</td></tr></table>
+```
+/**
+ * @param {number} n
+ * @return {string}
+ */
+let arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+var convertToTitle = function(n) {
+    if(n === 0 ) return 'A';
+    if(n <= 26)  return arr[n-1]
+    let num = Math.floor(n/26);
+    let num1 = n%26;
+    let str = num1 ? arr[num1 - 1] : 'Z';
+    num = num1 ? num : (num-1);
+    return convertToTitle(num) + str;
+};
+```
+## 38. 多数元素
+给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: [3,2,3]
+输出: 3
+🌰：输入: [2,2,1,1,1,2,2]
+输出: 2
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+    let n=nums[0],count=0;
+    for(let i=1;i<nums.length;i++){
+        if(nums[i] === n) {
+            count++; 
+            continue;
+        }
+        count === 0 ? n = nums[i] : count--;
+    }  
+    return  n;
+};
+```
+## 39. Excel表列序号
+给定一个Excel表格中的列名称，返回其相应的列序号。
+例如，
+
+    A -> 1
+    B -> 2
+    C -> 3
+    ...
+    Z -> 26
+    AA -> 27
+    AB -> 28 
+    ...
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: "A"
+输出: 1
+🌰：输入: "AB"
+输出: 28
+🌰：输入: "ZY"
+输出: 701
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var titleToNumber = function(s) {
+   let obj = {'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8,'I':9,'J':10,'K':11,'L':12,'M':13,'N':14,'O':15,'P':16,'Q':17,'R':18,'S':19,'T':20,'U':21,'V':22,'W':23,'X':24,'Y':25,'Z':26}; 
+   if(s.length === 1){
+       return obj[s];
+   }
+   let arr = s.split('');
+   let sum = 0;
+   let x = arr.length-1;
+   let y = 0;
+   while(x >=0 && y < arr.length){
+        sum = sum + Math.pow(26, x) * obj[arr[y]]
+        x--;
+        y++;
+   }
+   return sum;
+};
+```
+## 40. 阶乘后的零
+给定一个整数 n，返回 n! 结果尾数中零的数量。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 3
+输出: 0
+解释: 3! = 6, 尾数中没有零。
+🌰：输入: 5
+输出: 1
+解释: 5! = 120, 尾数中有 1 个零.
+</td></tr></table>
+```
+/**
+ * @param {number} n
+ * @return {number}
+ * 基本思路：查找该数是5的几倍，以及能够整除5几次；
+ * 例 31 = 5 + 2*5 + 3*5 + 4*5 + 5*5 + 6*5；
+ */
+var trailingZeroes = function(n) {
+    let count = 0;
+    while(n >= 5){
+        let j = Math.floor(n / 5);
+        count = count + j;
+        n = j;
+    }
+    return count;
+};
+```
+## 41. 存在重复元素 II
+给定一个整数数组和一个整数 k，判断数组中是否存在两个不同的索引 i 和 j，使得 nums [i] = nums [j]，并且 i 和 j 的差的 绝对值 不超过为 k。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: nums = [1,0,1,1], k = 1
+输出: true
+🌰：输入: nums = [1,2,3,1], k = 3
+输出: true
+🌰：输入: nums = [1,2,3,1,2,3], k = 2
+输出: false
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function(nums, k) {
+    if(nums.length < 1) return false;
+    for(let i = 0; i < nums.length; i++){
+        for(let j = i+1; j <= i+k; j++){
+            if(nums[i] === nums[j] ) return true;
+        }
+    }
+    return false;
+};
+(方法不是最优解，目前想到这种解法)
+```
+## 42. 翻转二叉树
+翻转一棵二叉树。
+<table><tr><td bgcolor=#D1EEEE>🌰：
+```
+输入：           输出：
+     4               4
+   /   \           /   \
+  2     7         7     2
+ / \   / \       / \   / \
+1   3 6   9     9   6 3   1
+```
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    if(!root) return null;
+    let right = invertTree(root.right);
+    let left = invertTree(root.left);
+    root.left = right;
+    root.right = left;
+    return root;
+}
+```
+## 43. 2的幂
+给定一个整数，编写一个函数来判断它是否是 2 的幂次方。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 1
+输出: true
+解释: 20 = 1
+🌰：输入: 16
+输出: true
+解释: 24 = 16
+🌰：输入: 218
+输出: false
+</td></tr></table>
+```
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfTwo = function(n) {
+    if(n < 0) return false;
+    let i = 0;
+    while(Math.pow(2,i) <= n){
+        if(Math.pow(2,i) === n) return true;
+        i++;
+    }
+    return false;
+};
 ```
