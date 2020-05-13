@@ -1,7 +1,7 @@
 ---
-title: leetcode刷题小记(简单版)
+title: leetcode刷题小记一(简单版)
 date: 2019-11-27 18:10:26
-tags:
+tags: -JavaScrip
 ---
 {% blockquote %}
 本文参考于题目出自leetcode官方，有些答案参考于网络，仅供学习使用～
@@ -1524,5 +1524,196 @@ var isPowerOfTwo = function(n) {
         i++;
     }
     return false;
+};
+```
+## 44. 请判断一个链表是否为回文链表。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 1->2
+输出: false
+🌰：输入: 1->2->2->1
+输出: true
+</td></tr></table>
+```
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ * 思路：正序以及倒序是完全相等的，则是回文链表
+ */
+var isPalindrome = function(head) {
+    let arr = []
+    let arr1 = []
+    let node = head
+    while(node){
+        arr.push(node.val)
+        arr1.unshift(node.val)
+        node = node.next
+    }
+    return JSON.stringify(arr) === JSON.stringify(arr1)
+};
+```
+## 45. 有效的字母异位词。
+给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: s = "anagram", t = "nagaram"
+输出: true
+🌰：输入: s = "rat", t = "car"
+输出: false
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    return s.split('').sort().join('') == t.split('').sort().join('')
+};
+```
+## 46. 二叉树的所有路径
+给定一个二叉树，返回所有从根节点到叶子节点的路径。
+说明: 叶子节点是指没有子节点的节点。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入:
+```
+   1
+ /   \
+2     3
+ \
+  5
+```
+输出: ["1->2->5", "1->3"]
+解释: 所有根节点到叶子节点的路径为: 1->2->5, 1->3
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+var binaryTreePaths = function(root) {
+    const routeSum = (node, curString) => {
+        let newString = curString ? curString + '->' + node.val : node.val + ''
+        if(!node.left && !node.right) {resArr.push(newString)}
+        else{
+            if(node.left) routeSum(node.left, newString)
+            if(node.right) routeSum(node.right, newString)
+        }
+    }
+
+    let resArr = []
+    if(root) routeSum(root, null)
+    return resArr
+};
+```
+## 47. 各位相加
+给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 38
+输出: 2 
+解释: 各位相加的过程为：3 + 8 = 11, 1 + 1 = 2。 由于 2 是一位数，所以返回 2。
+</td></tr></table>
+```
+/**
+ * @param {number} num
+ * @return {number}
+ */
+(方法一：基础方法)
+const addSum = (num) => {
+    let str = num + ''
+    let sum = 0;
+    for(let i of str){
+        sum = sum + Number(i)
+    }
+    return sum
+}
+var addDigits = function(num) {
+    if(num < 10) return num
+    let sum = addSum(num)
+    while(sum >= 10){
+        sum = addSum(sum)
+    }
+    return  sum 
+};
+
+
+(方法二：数学法)
+var addDigits = function(num) {
+    if (num < 10) return num
+    return num % 9 || 9
+};
+```
+## 48. 丑数
+编写一个程序判断给定的数是否为丑数。
+丑数就是只包含质因数 2, 3, 5 的正整数。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 6
+输出: true
+解释: 6 = 2 × 3
+🌰：输入: 8                   
+输出: true                   
+解释: 8 = 2 × 2 × 2          
+🌰：输入: 14
+输出: false 
+解释: 14 不是丑数，因为它包含了另外一个质因数 7。
+</td></tr></table>
+```
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var isUgly = function(num) {
+    if(num < 1) return false
+    let res = num;
+    while(res % 2 === 0) res = res / 2
+    while(res % 3 === 0) res = res / 3
+    while(res % 5 === 0) res = res / 5
+
+    return res === 1
+};
+```
+## 49. 缺失数字
+给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: [3,0,1]
+输出: 2        
+🌰：输入: [9,6,4,2,3,5,7,0,1]
+输出: 8
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function(nums) {
+    if(!nums.length) return 0
+    for(let i = 0; i<= nums.length; i++){
+        if(nums.indexOf(i) === -1) return i
+    }
+};
+```
+## 50. 移动零
+给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+说明:
+必须在原数组上操作，不能拷贝额外的数组。
+尽量减少操作次数。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    if(!nums.length) return nums
+
+    for(let i = 0; i<nums.length; i++){
+        if(nums[i] === 0){
+            let item = nums.splice(i, 1)
+            nums.push(item)
+            i--;
+        }
+    }
+    return nums
 };
 ```

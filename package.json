@@ -21,6 +21,7 @@
   },
   "scripts": {
     "dev": " hexo g && hexo s",
-    "build":"hexo c && hexo d"
+    "build":"hexo c && hexo d",
+    "create": "hexo new page"
   }
 }
