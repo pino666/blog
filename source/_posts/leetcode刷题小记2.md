@@ -239,3 +239,323 @@ var isPerfectSquare = function(num) {
     }
 };
 ```
+## 9. 猜数字大小
+我们正在玩一个猜数字游戏。 游戏规则如下：
+我从 1 到 n 选择一个数字。 你需要猜我选择了哪个数字。
+每次你猜错了，我会告诉你这个数字是大了还是小了。
+你调用一个预先定义好的接口 guess(int num)，它会返回 3 个可能的结果（-1，1 或 0）：
+-1 : 我的数字比较小
+ 1 : 我的数字比较大
+ 0 : 恭喜！你猜对了！
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: n = 10, pick = 6
+输出: 6
+</td></tr></table>
+```
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var guessNumber = function(n) {
+    let left = 1
+    let right = n
+    let res = 0
+
+    while(left <= right){
+        res = Math.floor((left + right) / 2)
+        const status = guess(res)
+        if(status === 0) break;
+        if(status === 1) {
+            left = res + 1
+        }
+        if(status === -1) {
+            right = res - 1
+        }
+    }
+    return res
+};
+```
+## 10. 赎金信
+给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。
+
+(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)
+<table><tr><td bgcolor=#D1EEEE>注意：你可以假设两个字符串均只含有小写字母。
+canConstruct("a", "b") -> false
+canConstruct("aa", "ab") -> false
+canConstruct("aa", "aab") -> true
+</td></tr></table>
+```
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function(ransomNote, magazine) {
+    let str = '';
+    let magazineArr = magazine.split('')
+    for(item of ransomNote){
+        const index = magazineArr.indexOf(item)
+        if(index !== -1){
+            const i = magazineArr.splice(index, 1)
+            str += i
+        }
+    }
+    return str === ransomNote
+};
+```
+## 11. 字符串中的第一个唯一字符
+给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+<table><tr><td bgcolor=#D1EEEE>🌰：s = "leetcode"
+返回 0.
+s = "loveleetcode",
+返回 2.
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function(s) {
+    for(let i = 0; i< s.length; i++){
+        if(s.indexOf(s[i]) === s.lastIndexOf(s[i])) return i
+    }
+    return  -1
+};
+```
+## 12. 找不同
+给定两个字符串 s 和 t，它们只包含小写字母。
+字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。
+请找出在 t 中被添加的字母
+<table><tr><td bgcolor=#D1EEEE>🌰：输入：
+s = "abcd"
+t = "abcde"
+输出：
+e
+解释：
+'e' 是那个被添加的字母
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {character}
+ */
+var findTheDifference = function(s, t) {
+    // 取巧方法， 改变了原数据
+  for(let item of s){
+    // 其中replace方法第一个参数包含 /g 的话，
+    // 会全局查找，替换所有符合条件单词，否则替换第一个。
+    t = t.replace(item, '')
+  }
+  return t
+};
+```
+## 13. 判断子序列
+给定字符串 s 和 t ，判断 s 是否为 t 的子序列。
+你可以认为 s 和 t 中仅包含英文小写字母。字符串 t 可能会很长（长度 ~= 500,000），而 s 是个短字符串（长度 <=100）。
+字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，"ace"是"abcde"的一个子序列，而"aec"不是）。
+<table><tr><td bgcolor=#D1EEEE>🌰：示例 1:
+s = "abc", t = "ahbgdc"
+返回 true.
+示例 2:
+s = "axc", t = "ahbgdc"
+返回 false.
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+    if(!s.length) return true
+    let sIndex = 0;
+    let tIndex = 0;
+
+    while(tIndex < t.length){
+        if(s[sIndex] === t[tIndex]) sIndex++
+        if( sIndex === s.length) return true
+        tIndex++
+    }
+    return false
+};
+```
+## 14. 左叶子之和
+计算给定二叉树的所有左叶子之和。
+<table><tr><td bgcolor=#D1EEEE>🌰：
+    3
+   / \
+  9  20
+    /  \
+   15   7
+在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumOfLeftLeaves = function(root) {
+    if(!root) return null;
+    let sum = 0
+    if(root.left && !root.left.left && !root.left.right){
+        sum = root.left.val
+    }
+    return sum + sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right)
+};
+```
+## 15. 第三大的数
+给定一个非空数组，返回此数组中第三大的数。如果不存在，则返回数组中最大的数。要求算法时间复杂度必须是O(n)。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: [3, 2, 1]
+输出: 1
+解释: 第三大的数是 1.
+🌰：输入: [1, 2]
+输出: 2
+解释: 第三大的数不存在, 所以返回最大的数 2 .
+🌰：输入: [2, 2, 3, 1]
+输出: 1
+解释: 注意，要求返回第三大的数，是指第三大且唯一出现的数。存在两个值为2的数，它们都排第二。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var thirdMax = function(nums) {
+    if(nums.length < 3) return Math.max(...nums)
+
+    let max1 = -Infinity
+    let max2 = -Infinity
+    let max3 = -Infinity
+
+    for(let n of nums){
+        if(n > max1){
+            max3 = max2
+            max2 = max1
+            max1 = n
+            continue
+        }
+        if(n !== max1 && n > max2){
+            max3 = max2
+            max2 = n
+            continue
+        }
+        if(n !== max1 && n !== max2 && n > max3){
+            max3 = n
+            continue
+        }
+    }
+    if(max1 === -Infinity || max2 === -Infinity || max3 === -Infinity) return Math.max(max1, max2,max3)
+    return max3
+};
+```
+## 16. 字符串相加
+给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。
+<table><tr><td bgcolor=#D1EEEE>注意：
+num1 和num2 的长度都小于 5100.
+num1 和num2 都只包含数字 0-9.
+num1 和num2 都不包含任何前导零。
+你不能使用任何內建 BigInteger 库， 也不能直接将输入的字符串转换为整数形式。
+</td></tr></table>
+```
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+var addStrings = function(num1, num2) {
+    let res = ''
+    let i = num1.length - 1
+    let j = num2.length - 1
+    let flag = 0
+    let sum = 0
+
+    while(i >=0 || j >=0 || flag){
+        let str1 = +num1[i--] || 0
+        let str2 = +num2[j--] || 0
+        sum = str1 + str2 + flag
+        if(sum >= 10){
+            flag = 1
+            sum = sum - 10
+        }else(
+            flag = 0
+        )
+        res = sum + '' + res
+    }
+
+    return res
+
+};
+```
+## 17. 字符串中的单词数
+统计字符串中的单词个数，这里的单词指的是连续的不是空格的字符。
+请注意，你可以假定字符串里不包括任何不可打印的字符。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: "Hello, my name is John"
+输出: 5
+解释: 这里的单词是指连续的不是空格的字符，所以 "Hello," 算作 1 个单词。
+</td></tr></table>
+```
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countSegments = function(s) {
+    if(!s) return 0
+    let res = 0
+    let flag = 1
+    for(let n of s){
+        if(n === ' ') {
+            if(flag) continue
+            flag = 1
+            res +=1
+        }else{
+            flag = 0
+        }
+    }
+    return flag ? res : res+1
+};
+||
+var countSegments = function(s) {
+    return s.length > 0 ? s.split(' ').filter(item => item.trim() !== '').length : 0
+};
+```
+## 18. 排列硬币
+你总共有 n 枚硬币，你需要将它们摆成一个阶梯形状，第 k 行就必须正好有 k 枚硬币。
+给定一个数字 n，找出可形成完整阶梯行的总行数。
+n 是一个非负整数，并且在32位有符号整型的范围内。
+<table><tr><td bgcolor=#D1EEEE>🌰：n = 5
+硬币可排列成以下几行:
+¤
+¤ ¤
+¤ ¤
+因为第三行不完整，所以返回2.
+🌰：n = 8
+硬币可排列成以下几行:
+¤
+¤ ¤
+¤ ¤ ¤
+¤ ¤
+因为第四行不完整，所以返回3.
+</td></tr></table>
+```
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var arrangeCoins = function(n) {
+    let i = 1
+    let sum = 0;
+    while(sum <= n){
+        if(sum === n) return i - 1
+        sum += i
+        i++
+    }
+    return i - 2
+};
+```
