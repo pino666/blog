@@ -559,3 +559,438 @@ var arrangeCoins = function(n) {
     return i - 2
 };
 ```
+## 19. 数字的补数
+给定一个正整数，输出它的补数。补数是对该数的二进制表示取反。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 5
+输出: 2
+解释: 5 的二进制表示为 101（没有前导零位），其补数为 010。所以你需要输出 2 。
+🌰：输入: 1
+输出: 0
+解释: 1 的二进制表示为 1（没有前导零位），其补数为 0。所以你需要输出 0 。
+</td></tr></table>
+```
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var findComplement = function(num) {
+    const num1 = parseInt(num).toString(2).split('')
+    const num2 = num1.map(item => item === '1' ? '0' : '1').join('')
+    return parseInt(num2, 2)
+
+};
+```
+## 20. 密钥格式化
+有一个密钥字符串 S ，只包含字母，数字以及 '-'（破折号）。其中， N 个 '-' 将字符串分成了 N+1 组。
+给你一个数字 K，请你重新格式化字符串，除了第一个分组以外，每个分组要包含 K 个字符；而第一个分组中，至少要包含 1 个字符。两个分组之间需要用 '-'（破折号）隔开，并且将所有的小写字母转换为大写字母。
+给定非空字符串 S 和数字 K，按照上面描述的规则进行格式化。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入：S = "5F3Z-2e-9-w", K = 4
+输出："5F3Z-2E9W"
+解释：字符串 S 被分成了两个部分，每部分 4 个字符；
+     注意，两个额外的破折号需要删掉。
+🌰：输入：S = "2-5g-3-J", K = 2
+输出："2-5G-3J"
+解释：字符串 S 被分成了 3 个部分，按照前面的规则描述，第一部分的字符可以少于给定的数量，其余部分皆为 2 个字符。
+提示:
+    S 的长度可能很长，请按需分配大小。K 为正整数。
+    S 只包含字母数字（a-z，A-Z，0-9）以及破折号'-'
+    S 非空
+</td></tr></table>
+```
+/**
+ * @param {string} S
+ * @param {number} K
+ * @return {string}
+ */
+var licenseKeyFormatting = function(S, K) {
+    let str = S.toUpperCase().replace(/\-/g,'');
+    let index = str.length % K;
+    let str1 = str.slice(0, index)
+    let str2 = str.slice(index)
+    let res = [];
+    let count = str2.length / K;
+    for(let i = 0; i < count; i++) {
+        res.push(str2.substr(i * K, K))
+    }
+    if (str1 !== '') {
+        res.unshift(str1)
+    }
+    return res.join('-');
+};
+||
+var licenseKeyFormatting = function(S, K) {
+    let str = S.toUpperCase().replace(/\-/g,'');
+    let i = str.length - K;
+    let res = ''
+    while(i + K > 0){
+        res = (i > 0 ? '-' : '') + str.substring(i, i+K) + res;
+        i -= K;
+    }
+    return res;
+};
+```
+## 21. 最大连续1的个数
+给定一个二进制数组， 计算其中最大连续1的个数。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: [1,1,0,1,1,1]
+输出: 3
+解释: 开头的两位和最后的三位都是连续1，所以最大连续1的个数是 3.
+注意：
+    输入的数组只包含 0 和1。
+    输入数组的长度是正整数，且不超过 10,000。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function(nums) {
+    if(!nums.length) return 0
+    let num = 0 , count  = 0
+    for(let i of nums){
+        if(!i) {
+            count = count > num ? count : num
+            num = 0
+            continue;
+        }
+        num++;
+    }
+    return count > num ? count : num;
+};
+```
+## 22. 构造矩形
+作为一位web开发者， 懂得怎样去规划一个页面的尺寸是很重要的。 现给定一个具体的矩形页面面积，你的任务是设计一个长度为 L 和宽度为 W 且满足以下要求的矩形的页面。要求：
+1. 你设计的矩形页面必须等于给定的目标面积。
+2. 宽度 W 不应大于长度 L，换言之，要求 L >= W 。
+3. 长度 L 和宽度 W 之间的差距应当尽可能小。
+你需要按顺序输出你设计的页面的长度 L 和宽度 W。
+说明:
+    给定的面积不大于 10,000,000 且为正整数。
+    你设计的页面的长度和宽度必须都是正整数。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 4
+输出: [2, 2]
+解释: 目标面积是 4， 所有可能的构造方案有 [1,4], [2,2], [4,1]。
+但是根据要求2，[1,4] 不符合要求; 根据要求3，[2,2] 比 [4,1] 更能符合要求. 所以输出长度 L 为 2， 宽度 W 为 2。
+</td></tr></table>
+```
+/**
+ * @param {number} area
+ * @return {number[]}
+ */
+var constructRectangle = function(area) {
+    let w = Math.floor(Math.sqrt(area))
+    while(area%w){
+        w--;
+    }
+    return [area/w, w]
+};
+```
+## 23. 下一个更大元素 I
+给定两个 没有重复元素 的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。找到 nums1 中每个元素在 nums2 中的下一个比其大的值。
+nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的元素。如果不存在，对应位置输出 -1 。
+提示：
+    nums1和nums2中所有元素是唯一的。
+    nums1和nums2 的数组大小都不超过1000。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: nums1 = [4,1,2], nums2 = [1,3,4,2].
+输出: [-1,3,-1]
+解释:
+    对于num1中的数字4，你无法在第二个数组中找到下一个更大的数字，因此输出 -1。
+    对于num1中的数字1，第二个数组中数字1右边的下一个较大数字是 3。
+    对于num1中的数字2，第二个数组中没有下一个更大的数字，因此输出 -1。
+🌰：输入: nums1 = [2,4], nums2 = [1,2,3,4].
+输出: [3,-1]
+解释:
+    对于 num1 中的数字 2 ，第二个数组中的下一个较大数字是 3 。
+    对于 num1 中的数字 4 ，第二个数组中没有下一个更大的数字，因此输出 -1 。
+```
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+
+var searchIndex = (arr, num, index) => {
+    const arr1  = arr.slice(index)
+    for(let i of arr1){
+        if(i > num) return i
+    }
+    return -1
+}
+var nextGreaterElement = function(nums1, nums2) {
+    let max = Math.max(nums2)
+    let res = []
+    for(let j of nums1){
+        if(j > max) {
+            res.push(-1)
+        }else{
+            const num = searchIndex(nums2, j, nums2.indexOf(j)+1)
+            res.push(num)
+        }
+    }
+    return res
+};
+||
+var nextGreaterElement = function(nums1, nums2) {
+    let res = [];
+    for(let i = 0; i < nums1.length; i++){
+        let num = nums2.indexOf(nums1[i]);
+        let findNum = nums2.findIndex((item,index) => item > nums1[i] && index > num);
+        findNum !== -1 ? res.push(nums2[findNum]) : res.push(-1)
+    }
+    return res;
+};
+```
+## 24. 二叉搜索树中的众数
+给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。
+假定 BST 有如下定义：
+    结点左子树中所含结点的值小于等于当前结点的值
+    结点右子树中所含结点的值大于等于当前结点的值
+    左子树和右子树都是二叉搜索树
+提示：如果众数超过1个，不需考虑输出顺序
+<table><tr><td bgcolor=#D1EEEE>🌰：给定 BST [1,null,2,2],
+   1
+    \
+     2
+    /
+   2
+返回[2].
+</td></tr></table>
+```
+//**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findMode = function(root) {
+    let res = [], maxCount = 0, count = 0, preVal = null;
+    let search = (node) => {
+        if(node === null) return;
+        search(node.left)
+        if(node.val === preVal){
+            count++;
+        }else{
+            count = 1;
+        }
+        if(maxCount === count){
+            res.push(node.val)
+        }else if(maxCount < count){
+            res = [node.val]
+            maxCount = count
+        }
+        preVal = node.val
+        search(node.right) 
+    }
+    search(root);
+    return res;
+};
+```
+## 25. 七进制数
+给定一个整数，将其转化为7进制，并以字符串形式输出。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 100
+输出: "202"
+解释: 5 的二进制表示为 101（没有前导零位），其补数为 010。所以你需要输出 2 。
+🌰：输入: -7
+输出: "-10"
+</td></tr></table>
+```
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var convertToBase7 = function(num) {
+    if(!num) return '0'
+    let res = []
+    const transform = (data) => {
+        while(data >= 7){
+            res.unshift(data % 7)
+            data = Math.floor(data / 7)
+        }
+        res.unshift(data)
+    }
+    num > 0 ? transform(num) : transform(Math.abs(num))
+    return num > 0 ? res.join('') : '-' + res.join('')
+};
+```
+## 26. 相对名次
+给出 N 名运动员的成绩，找出他们的相对名次并授予前三名对应的奖牌。前三名运动员将会被分别授予 “金牌”，“银牌” 和“ 铜牌”（"Gold Medal", "Silver Medal", "Bronze Medal"）。
+(注：分数越高的选手，排名越靠前。)
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: [5, 4, 3, 2, 1]
+输出: ["Gold Medal", "Silver Medal", "Bronze Medal", "4", "5"]
+解释: 前三名运动员的成绩为前三高的，因此将会分别被授予 “金牌”，“银牌”和“铜牌” ("Gold Medal", "Silver Medal" and "Bronze Medal").
+余下的两名运动员，我们只需要通过他们的成绩计算将其相对名次即可。
+提示:
+    N 是一个正整数并且不会超过 10000。
+    所有运动员的成绩都不相同。
+</td></tr></table>
+```
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var findRelativeRanks = function(nums) {
+    let arr = nums.map(item => item)
+    arr.sort((a,b) => b-a)
+    let res = []
+    let obj = {
+        0:'Gold Medal',
+        1:'Silver Medal',
+        2:'Bronze Medal',
+    }
+    let i = 0
+    while(i< nums.length){
+        if(arr.indexOf(nums[i]) < 3){
+            res.push(obj[arr.indexOf(nums[i])])
+        }else{
+            res.push((arr.indexOf(nums[i])+1) + '')
+        }  
+        i++
+    }
+    return res
+};
+||
+var findRelativeRanks = function(nums) {
+    const arr = [...nums].sort((a, b) => b - a)
+    const map = new Map()
+    arr.forEach((item, index) => {
+        map.set(item, `${index + 1}`)
+    })
+    return nums.map(i => {
+        if (map.get(i) === '1') return 'Gold Medal'
+        if (map.get(i) === '2') return  "Silver Medal"
+        if (map.get(i) === '3') return  "Bronze Medal"
+        return map.get(i)
+    })
+};
+```
+## 27. 完美数
+对于一个 正整数，如果它和除了它自身以外的所有正因子之和相等，我们称它为“完美数”。
+给定一个 整数 n， 如果他是完美数，返回 True，否则返回 False
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: 28
+输出: True
+解释: 28 = 1 + 2 + 4 + 7 + 14
+</td></tr></table>
+```
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var checkPerfectNumber = function(num) {
+    if(num === 1) return false
+    let sum = 1
+    for(let i = 2; i <= Math.sqrt(num);i++){
+        if(num % i === 0){
+            sum +=i
+            if(Math.pow(i, 2) !== num){
+                sum += num/i
+            }
+        }
+    }
+    return sum === num
+};
+```
+## 28. 斐波那契数
+斐波那契数，通常用 F(n) 表示，形成的序列称为斐波那契数列。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是
+    F(0) = 0,   F(1) = 1
+    F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+给定 N，计算 F(N)。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入：2
+输出：1
+解释：F(2) = F(1) + F(0) = 1 + 0 = 1.
+🌰：输入：3
+输出：2
+解释：F(3) = F(2) + F(1) = 1 + 1 = 2.
+🌰：输入：4
+输出：3
+解释：F(4) = F(3) + F(2) = 2 + 1 = 3.
+</td></tr></table>
+```
+/**
+ * @param {number} N
+ * @return {number}
+ */
+// 递归
+var fib = function(N) {
+  if(N === 0 || N === 1) return N
+  return fib(N-1) + fib(N-2) 
+};
+||
+// 动态规划
+var fib = function(N) {
+    if(N === 0) return 0
+    if(N === 1 || N === 2) return 1
+    let pre = 1
+    let curr = 1
+    for(let i = 3; i <= N; i++){
+        let sum = pre + curr
+        pre = curr
+        curr = sum
+    }
+    return curr 
+};
+```
+## 29. 最长特殊序列 Ⅰ
+给你两个字符串，请你从这两个字符串中找出最长的特殊序列。
+「最长特殊序列」定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。
+子序列 可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。
+输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。
+<table><tr><td bgcolor=#D1EEEE>🌰：输入: "aba", "cdc"
+输出: 3
+解释: 最长特殊序列可为 "aba" (或 "cdc")，两者均为自身的子序列且不是对方的子序列
+🌰：输入：a = "aaa", b = "aaa"
+输出：-1
+</td></tr></table>
+```
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {number}
+ */
+var findLUSlength = function(a, b) {
+    if(a === b) return -1
+    return a.length > b.length ? a.length : b.length
+};
+```
+## 30. 二叉搜索树的最小绝对差
+给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值
+<table><tr><td bgcolor=#D1EEEE>🌰：输入
+   1
+    \
+     3
+    /
+   2
+输出：1
+解释：最小绝对差为 1，其中 2 和 1 的差的绝对值为 1（或者 2 和 3）。
+</td></tr></table>
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var getMinimumDifference = function(root) {
+    let pre = null
+    let min = Infinity
+    let middleErgodic = (root) => {
+        if(!root) return
+        middleErgodic(root.left)
+        if(pre) {
+            min = min < Math.abs(pre.val - root.val) ? min : Math.abs(pre.val - root.val)
+        }
+        pre = root
+        middleErgodic(root.right)
+    }
+    middleErgodic(root)
+    return min
+};
+```
