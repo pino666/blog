@@ -1267,6 +1267,11 @@ hexo-pagination@0.0.2:
   dependencies:
     utils-merge "^1.0.0"
 
+hexo-pagination@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-1.0.0.tgz#c9c0ca3665267b9e9d0a89fc3edcaf3276907dc1"
+  integrity sha512-miEVFgxchPr2qNWxw0JWpJ9R/Yaf7HjHBZVjvCCcqfbsLyYtCvIfJDxcEwz1sDOC/fLzYPqNnhUI73uNxBHRSA==
+
 hexo-renderer-ejs@^0.3.0:
   version "0.3.1"
   resolved "https://registry.npm.taobao.org/hexo-renderer-ejs/download/hexo-renderer-ejs-0.3.1.tgz#c0c1a3757532d47e5b7d9dc908b5dfd98c94be2c"
@@ -1782,9 +1787,9 @@ lodash.some@^4.4.0:
   integrity sha1-G7nzFO9ri63tE7VJFpsqlF62jk0=
 
 lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 longest@^1.0.1:
   version "1.0.1"
